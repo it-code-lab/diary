@@ -39,6 +39,10 @@ foreach ($land_rows as $row) {
 </head>
 <body>
   <h1>Loan Application - Serial <?= $entry['serial_no'] ?>/<?= $entry['year'] ?></h1>
+<p>
+  <a href="index.php">← Back to Diary</a> |
+  <a href="edit_entry.php?serial_no=<?= $serial_no ?>&year=<?= $year ?>" style="color: #007bff;">✏️ Edit This Entry</a>
+</p>
 
   <div class="entry">
     <p><strong>Name:</strong> <?= $entry['name'] ?></p>

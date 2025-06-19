@@ -22,8 +22,10 @@
           <td>{$row['tehsil']}</td>
           <td>{$row['amount']}</td>
           <td>{$row['village']}</td>
-          <td><a href='view_entry.php?serial_no={$row['serial_no']}&year={$row['year']}'>View</a></td>
-        </tr>";
+          <td><a href='view_entry.php?serial_no={$row['serial_no']}&year={$row['year']}'>View</a> |
+          <a href='edit_entry.php?serial_no={$row['serial_no']}&year={$row['year']}'>Edit</a>
+          </td>
+          </tr>";
     }
     ?>
   </table>
