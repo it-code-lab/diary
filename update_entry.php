@@ -16,8 +16,8 @@ $came_thru = $_POST['came_thru'];
 $expenses = $_POST['expenses'];
 $advance = $_POST['advance'];
 $remaining = $_POST['remaining'];
-$village = $_POST['village'] ?? null;
-$request = $_POST['request'] ?? null;
+$village = $_POST['village'] ;
+$request = $_POST['request'] ;
 
 try {
     $pdo->beginTransaction();

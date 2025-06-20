@@ -53,7 +53,7 @@ $village_options = [
         function updateRemaining() {
             const expense = parseFloat(document.getElementById('expenses').value) || 0;
             const advance = parseFloat(document.getElementById('advance').value) || 0;
-            document.getElementById('remaining').value = (expense - advance).toFixed(2);
+            document.getElementById('remaining').value = (expense - advance).toFixed(0);
         }
 
         function addLandRow(groupId) {
