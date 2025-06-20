@@ -57,6 +57,7 @@ foreach ($land_details as $land) {
       row.style.border = '1px solid #ccc';
       row.style.padding = '10px';
       row.style.marginTop = '10px';
+      row.style.background = '#fff';
       row.style.position = 'relative';
 
       row.innerHTML = `
@@ -75,7 +76,7 @@ foreach ($land_details as $land) {
       const groupId = `group_${Date.now()}`;
       const div = document.createElement('div');
       div.id = groupId;
-      div.style.background = '#e4e4e4';
+
       div.style.padding = '15px';
       div.style.borderRadius = '15px';
       div.style.marginBottom = '15px';
@@ -92,7 +93,10 @@ foreach ($land_details as $land) {
   </script>
 </head>
 <body>
-<h2>Edit Diary Entry</h2>
+<p>
+  <a href="index.php">← Back to Diary</a>
+  </p>
+<h1>Edit Entry <?= $entry['web_entry_no'] ?>/<?= $entry['year'] ?></h1>
 <form method="post" action="update_entry.php">
   <input type="hidden" name="web_entry_no" value="<?= $web_entry_no ?>">
   <label>Name: <input type="text" name="name" value="<?= htmlspecialchars($entry['name']) ?>"></label><br>

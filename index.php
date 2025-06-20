@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <h1>Diary Entries</h1>
+  <h1>Web Diary Entries</h1>
   <a href="add_entry.php">+ Add New Entry</a>
   <table border="1" cellpadding="5" cellspacing="0">
     <tr>
