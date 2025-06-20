@@ -1,4 +1,12 @@
 <?php
+session_start();
+if (!isset($_SESSION['user'])) {
+  header("Location: login.php");
+  exit;
+}
+?>
+
+<?php
 include 'db.php';
 
 $web_entry_no = $_GET['web_entry_no'];

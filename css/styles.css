@@ -18,6 +18,12 @@ form {
   box-shadow: 0 0 10px rgba(0,0,0,0.08);
 }
 
+@media (max-width: 600px) {
+  form {
+  padding: 5px 5px;
+  }
+}
+
 label {
   display: block;
   margin-bottom: 6px;

@@ -1,4 +1,12 @@
 <?php
+session_start();
+if (!isset($_SESSION['user'])) {
+  header("Location: login.php");
+  exit;
+}
+?>
+
+<?php
 require_once("db.php");
 $stmt = $pdo->query("SELECT * FROM diary_entries ORDER BY web_entry_no DESC");
 $entries = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -144,6 +152,8 @@ $entries = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
+    <p style="text-align:right;"><a href="logout.php">Logout (<?= $_SESSION['user'] ?>)</a></p>
+
     <div class="container">
         <h2>Web Diary Entries</h2>
         <a href="add_entry.php" class="add-entry">+ Add New Entry</a>
