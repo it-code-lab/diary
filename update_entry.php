@@ -3,6 +3,7 @@ require_once("db.php");
 
 $web_entry_no = $_POST['web_entry_no'] ?? null;
 $year = $_POST['year'] ?? null;
+$serial_no = $_POST['serial_no'] ?? null;
 
 if (!$web_entry_no || !$year) {
     die("Missing web_entry_no or year");
@@ -29,14 +30,14 @@ try {
     // Update main entry
     $sql = "UPDATE diary_entries SET 
         entry_date = ?, name = ?, tehsil = ?, amount = ?, nec = ?, affidavit = ?, deed = ?, b_c = ?, stamp = ?, 
-        came_thru = ?, expenses = ?, advance = ?, remaining = ?, village = ?, request = ?
+        came_thru = ?, expenses = ?, advance = ?, remaining = ?, village = ?, request = ?, serial_no = ?
         WHERE web_entry_no = ? AND year = ?";
 
     $params = [
         $_POST['entry_date'], $_POST['name'], $_POST['tehsil'], $_POST['amount'],
         $_POST['nec'], $_POST['affidavit'], $_POST['deed'], $_POST['b_c'], $_POST['stamp'],
         $_POST['came_thru'], $_POST['expenses'], $_POST['advance'], $_POST['remaining'],
-        $_POST['village'], $_POST['request'], $web_entry_no, $year
+        $_POST['village'], $_POST['request'], $serial_no, $web_entry_no, $year
     ];
 
     // Debug log: show full SQL with values

@@ -228,6 +228,8 @@ $village_options = [
     <form action="update_entry.php" method="post">
       <input type="hidden" name="web_entry_no" value="<?= $web_entry_no ?>">
       <label>Year: <input type="text" name="year" value="<?= $entry['year'] ?>" required></label><br>
+      <label>Excel Serial Number: <input type="number" name="serial_no" value="<?= htmlspecialchars($entry['serial_no']) ?>"></label><br>
+
       <label>Date: <input type="date" name="entry_date" value="<?= $entry['entry_date'] ?>"></label><br>
       <label>Name:<br>
         <textarea name="name" rows="4" cols="50"><?= htmlspecialchars($entry['name']) ?></textarea>

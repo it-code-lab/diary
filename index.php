@@ -109,9 +109,9 @@ $entries = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 font-weight: bold;
             }
 
-            td:last-child {
+            /* td:last-child {
                 text-align: left;
-            }
+            } */
 
             td[data-label="Action"]::before {
                 content: "Action";
