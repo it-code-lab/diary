@@ -2,7 +2,7 @@
 include 'db.php';
 
 // Fetch next serial number
-$stmt = $pdo->query("SELECT MAX(serial_no) AS max_serial FROM diary_entries");
+$stmt = $pdo->query("SELECT MAX(web_entry_no) AS max_serial FROM diary_entries");
 $max = $stmt->fetch(PDO::FETCH_ASSOC)['max_serial'] ?? 0;
 $next_serial = $max + 1;
 
@@ -68,9 +68,12 @@ $village_options = [
   </script>
 </head>
 <body>
+    <p>
+  <a href="index.php">← Back to Diary</a>
+</p>
   <h2>Add Diary Entry + Land Details</h2>
   <form action="save_entry.php" method="post">
-    <label>Serial No: <input type="number" name="serial_no" value="<?= $next_serial ?>" required></label><br>
+    <label>Web Entry No: <input type="number" name="web_entry_no" value="<?= $next_serial ?>" required></label><br>
     <label>Year: <input type="text" name="year" value="<?= $current_year ?>" required></label><br>
     <label>Date: <input type="date" name="entry_date" value="<?= $today ?>"></label><br>
     <label>Name: <input type="text" name="name" required></label><br>

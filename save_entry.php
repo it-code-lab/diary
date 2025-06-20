@@ -4,13 +4,13 @@ include 'db.php';
 // 1. Insert into diary_entries
 $stmt = $pdo->prepare("
   INSERT INTO diary_entries (
-    serial_no, year, entry_date, name, tehsil, amount, nec, affidavit,
+    web_entry_no, year, entry_date, name, tehsil, amount, nec, affidavit,
     deed, b_c, stamp, expenses, advance, remaining, came_thru, request, village
   ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 ");
 
 $stmt->execute([
-  $_POST['serial_no'], $_POST['year'], $_POST['entry_date'], $_POST['name'], $_POST['tehsil'],
+  $_POST['web_entry_no'], $_POST['year'], $_POST['entry_date'], $_POST['name'], $_POST['tehsil'],
   $_POST['amount'], $_POST['nec'], $_POST['affidavit'], $_POST['deed'], $_POST['b_c'],
   $_POST['stamp'], $_POST['expenses'], $_POST['advance'], $_POST['remaining'],
   $_POST['came_thru'], $_POST['request'], $_POST['village']
@@ -19,7 +19,7 @@ $stmt->execute([
 // 2. Prepare land_details insert
 $landStmt = $pdo->prepare("
   INSERT INTO land_details (
-    serial_no, year, village, pargana_tehsil_district, khata_no, khasra_no, area_in_hectare, share
+    web_entry_no, year, village, pargana_tehsil_district, khata_no, khasra_no, area_in_hectare, share
   ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
 ");
 
@@ -44,7 +44,7 @@ foreach ($village_groups as $i => $group_id) {
   $group = $group_map[$group_id];
 
   $landStmt->execute([
-    $_POST['serial_no'], $_POST['year'],
+    $_POST['web_entry_no'], $_POST['year'],
     $group['village'],
     $group['pargana'],
     $khata_nos[$i],
@@ -55,6 +55,6 @@ foreach ($village_groups as $i => $group_id) {
 }
 
 // 3. Redirect back to dashboard or view
-header("Location: view_entry.php?serial_no=" . $_POST['serial_no'] . "&year=" . $_POST['year']);
+header("Location: view_entry.php?web_entry_no=" . $_POST['web_entry_no'] . "&year=" . $_POST['year']);
 exit;
 ?>

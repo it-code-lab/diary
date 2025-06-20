@@ -1,21 +1,21 @@
 <?php
 include 'db.php';
 
-$serial_no = $_GET['serial_no'];
+$web_entry_no = $_GET['web_entry_no'];
 $year = $_GET['year'];
 
 // Fetch diary entry
-$stmt = $pdo->prepare("SELECT * FROM diary_entries WHERE serial_no = ? AND year = ?");
-$stmt->execute([$serial_no, $year]);
+$stmt = $pdo->prepare("SELECT * FROM diary_entries WHERE web_entry_no = ? AND year = ?");
+$stmt->execute([$web_entry_no, $year]);
 $entry = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // Fetch land details
 $land_stmt = $pdo->prepare("
   SELECT * FROM land_details 
-  WHERE serial_no = ? AND year = ?
+  WHERE web_entry_no = ? AND year = ?
   ORDER BY village, pargana_tehsil_district, khata_no, khasra_no
 ");
-$land_stmt->execute([$serial_no, $year]);
+$land_stmt->execute([$web_entry_no, $year]);
 $land_rows = $land_stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Group land details
@@ -38,10 +38,10 @@ foreach ($land_rows as $row) {
   </style>
 </head>
 <body>
-  <h1>Loan Application - Serial <?= $entry['serial_no'] ?>/<?= $entry['year'] ?></h1>
+  <h1>Loan Application - Serial <?= $entry['web_entry_no'] ?>/<?= $entry['year'] ?></h1>
 <p>
   <a href="index.php">← Back to Diary</a> |
-  <a href="edit_entry.php?serial_no=<?= $serial_no ?>&year=<?= $year ?>" style="color: #007bff;">✏️ Edit This Entry</a>
+  <a href="edit_entry.php?web_entry_no=<?= $web_entry_no ?>&year=<?= $year ?>" style="color: #007bff;">✏️ Edit This Entry</a>
 </p>
 
   <div class="entry">
@@ -88,5 +88,38 @@ foreach ($land_rows as $row) {
     </div>
   <?php endforeach; ?>
 
+  <?php if ($entry['request'] === 'Sarv UP Kisan Credit Card'): ?>
+  <div class="documents">
+    <h3>Application Documents:</h3>
+    <ul>
+      <li><a href="templates/sarvup_affidavit.php?web_entry_no=<?= $web_entry_no ?>&year=<?= $year ?>" target="_blank">View Affidavit</a></li>
+      <li><a href="templates/sarvup_deed.php?web_entry_no=<?= $web_entry_no ?>&year=<?= $year ?>" target="_blank">View Deed</a></li>
+      <li><a href="templates/sarvup_nec.php?web_entry_no=<?= $web_entry_no ?>&year=<?= $year ?>" target="_blank">View NEC</a></li>
+    </ul>
+  </div>
+<?php endif; ?>
+<?php if ($entry['request'] === 'PNB Kisan Credit Card'): ?>
+  <div class="documents">
+    <h3>Application Documents:</h3>
+    <ul>
+      <li><a href="templates/pnb_affidavit.php?web_entry_no=<?= $web_entry_no ?>&year=<?= $year ?>" target="_blank">View Affidavit</a></li>
+      <li><a href="templates/pnb_deed.php?web_entry_no=<?= $web_entry_no ?>&year=<?= $year ?>" target="_blank">View Deed</a></li>
+      <li><a href="templates/pnb_nec.php?web_entry_no=<?= $web_entry_no ?>&year=<?= $year ?>" target="_blank">View NEC</a></li>
+    </ul>
+  </div>
+<?php endif; ?>
+
+<?php if ($entry['request'] === 'Oriental Bank Credit Card'): ?>
+  <div class="documents">
+    <h3>Application Documents:</h3>
+    <ul>
+      <li><a href="templates/oriental_affidavit.php?web_entry_no=<?= $web_entry_no ?>&year=<?= $year ?>" target="_blank">View Affidavit</a></li>
+      <li><a href="templates/oriental_deed.php?web_entry_no=<?= $web_entry_no ?>&year=<?= $year ?>" target="_blank">View Deed</a></li>
+      <li><a href="templates/oriental_nec.php?web_entry_no=<?= $web_entry_no ?>&year=<?= $year ?>" target="_blank">View NEC</a></li>
+      <li><a href="templates/oriental_cover.php?web_entry_no=<?= $web_entry_no ?>&year=<?= $year ?>" target="_blank">View NEC</a></li>
+
+    </ul>
+  </div>
+<?php endif; ?>
 </body>
 </html>

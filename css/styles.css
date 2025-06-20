@@ -70,3 +70,22 @@ fieldset {
   border-radius: 8px;
   margin-bottom: 25px;
 }
+
+#village-groups > div:nth-child(odd) {
+  background: gainsboro;
+}
+
+#village-groups > div:nth-child(even) {
+  background: rgb(181, 226, 216);
+}
+
+#village-groups div {
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+#village-groups input {
+    width: 96%;
+
+}

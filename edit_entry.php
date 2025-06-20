@@ -3,17 +3,17 @@
 include 'db.php';
 
 // Fetch entry to edit
-$serial_no = $_GET['serial_no'] ?? '';
+$web_entry_no = $_GET['web_entry_no'] ?? '';
 $year = $_GET['year'] ?? '';
 
 // Fetch diary entry
-$stmt = $pdo->prepare("SELECT * FROM diary_entries WHERE serial_no = ? AND year = ?");
-$stmt->execute([$serial_no, $year]);
+$stmt = $pdo->prepare("SELECT * FROM diary_entries WHERE web_entry_no = ? AND year = ?");
+$stmt->execute([$web_entry_no, $year]);
 $entry = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // Fetch land details
-$land_stmt = $pdo->prepare("SELECT * FROM land_details WHERE serial_no = ? AND year = ? ORDER BY id ASC");
-$land_stmt->execute([$serial_no, $year]);
+$land_stmt = $pdo->prepare("SELECT * FROM land_details WHERE web_entry_no = ? AND year = ? ORDER BY id ASC");
+$land_stmt->execute([$web_entry_no, $year]);
 $land_details = $land_stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $request_options = ["PNB Kisan Credit Card", "Sarv UP Kisan Credit Card", "Tractor", "Oriental Bank Credit Card"];
@@ -26,9 +26,13 @@ $village_options = ["Ambiapur", "Beheta Gusain", "Bilsi", "Gudhni", "Islamnagar"
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<h2>Edit Diary Entry #<?= htmlspecialchars($serial_no) ?> (<?= htmlspecialchars($year) ?>)</h2>
+<p>
+  <a href="index.php">← Back to Diary</a>
+  </p>
+<h2>Edit Diary Entry #<?= htmlspecialchars($web_entry_no) ?> (<?= htmlspecialchars($year) ?>)</h2>
+
 <form method="post" action="update_entry.php">
-  <input type="hidden" name="serial_no" value="<?= $serial_no ?>">
+  <input type="hidden" name="web_entry_no" value="<?= $web_entry_no ?>">
   <input type="hidden" name="year" value="<?= $year ?>">
 
   <label>Name: <input type="text" name="name" value="<?= htmlspecialchars($entry['name']) ?>"></label><br>

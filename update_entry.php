@@ -7,24 +7,24 @@ $stmt = $pdo->prepare("
     name = ?, tehsil = ?, amount = ?, nec = ?, affidavit = ?, deed = ?, 
     b_c = ?, stamp = ?, expenses = ?, advance = ?, remaining = ?, 
     came_thru = ?, request = ?, village = ?
-  WHERE serial_no = ? AND year = ?
+  WHERE web_entry_no = ? AND year = ?
 ");
 
 $stmt->execute([
   $_POST['name'], $_POST['tehsil'], $_POST['amount'], $_POST['nec'], $_POST['affidavit'],
   $_POST['deed'], $_POST['b_c'], $_POST['stamp'], $_POST['expenses'], $_POST['advance'],
   $_POST['remaining'], $_POST['came_thru'], $_POST['request'], $_POST['village'],
-  $_POST['serial_no'], $_POST['year']
+  $_POST['web_entry_no'], $_POST['year']
 ]);
 
 // Delete old land details
-$pdo->prepare("DELETE FROM land_details WHERE serial_no = ? AND year = ?")
-    ->execute([$_POST['serial_no'], $_POST['year']]);
+$pdo->prepare("DELETE FROM land_details WHERE web_entry_no = ? AND year = ?")
+    ->execute([$_POST['web_entry_no'], $_POST['year']]);
 
 // Re-insert updated land details
 $insertLand = $pdo->prepare("
   INSERT INTO land_details (
-    serial_no, year, village, pargana_tehsil_district, khata_no, khasra_no, area_in_hectare, share
+    web_entry_no, year, village, pargana_tehsil_district, khata_no, khasra_no, area_in_hectare, share
   ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
 ");
 
@@ -37,13 +37,13 @@ $shares = $_POST['share'];
 
 for ($i = 0; $i < count($khata_nos); $i++) {
   $insertLand->execute([
-    $_POST['serial_no'], $_POST['year'],
+    $_POST['web_entry_no'], $_POST['year'],
     $village_names[$i], $parganas[$i],
     $khata_nos[$i], $khasra_nos[$i],
     $areas[$i], $shares[$i]
   ]);
 }
 
-header("Location: view_entry.php?serial_no=" . $_POST['serial_no'] . "&year=" . $_POST['year']);
+header("Location: view_entry.php?web_entry_no=" . $_POST['web_entry_no'] . "&year=" . $_POST['year']);
 exit;
 ?>
