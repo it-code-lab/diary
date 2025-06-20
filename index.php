@@ -10,7 +10,7 @@
   <a href="add_entry.php">+ Add New Entry</a>
   <table border="1" cellpadding="5" cellspacing="0">
     <tr>
-      <th>Web Entry No</th><th>Date</th><th>Name</th><th>Bank</th><th>Amount</th><th>Village</th><th>Action</th>
+      <th>Web Entry No</th><th>Date</th><th>Name</th><th>Tehsil</th><th>Village</th><th>Request</th><th>Action</th>
     </tr>
     <?php
     $stmt = $pdo->query("SELECT * FROM diary_entries ORDER BY year DESC, web_entry_no ASC");
@@ -20,8 +20,9 @@
           <td>{$row['entry_date']}</td>
           <td>{$row['name']}</td>
           <td>{$row['tehsil']}</td>
-          <td>{$row['amount']}</td>
           <td>{$row['village']}</td>
+          <td>{$row['request']}</td>
+
           <td><a href='view_entry.php?web_entry_no={$row['web_entry_no']}&year={$row['year']}'>View</a> |
           <a href='edit_entry.php?web_entry_no={$row['web_entry_no']}&year={$row['year']}'>Edit</a>
           </td>

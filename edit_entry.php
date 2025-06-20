@@ -29,7 +29,7 @@ $village_options = ["Ambiapur", "Beheta Gusain", "Bilsi", "Gudhni", "Islamnagar"
 <p>
   <a href="index.php">← Back to Diary</a>
   </p>
-<h2>Edit Diary Entry #<?= htmlspecialchars($web_entry_no) ?> (<?= htmlspecialchars($year) ?>)</h2>
+<h2>Edit Web Entry #<?= htmlspecialchars($web_entry_no) ?> (<?= htmlspecialchars($year) ?>)</h2>
 
 <form method="post" action="update_entry.php">
   <input type="hidden" name="web_entry_no" value="<?= $web_entry_no ?>">

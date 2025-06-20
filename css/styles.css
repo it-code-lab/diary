@@ -89,3 +89,8 @@ fieldset {
     width: 96%;
 
 }
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}

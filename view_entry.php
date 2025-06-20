@@ -38,7 +38,7 @@ foreach ($land_rows as $row) {
   </style>
 </head>
 <body>
-  <h1>Loan Application - Serial <?= $entry['web_entry_no'] ?>/<?= $entry['year'] ?></h1>
+  <h1>Web Entry <?= $entry['web_entry_no'] ?>/<?= $entry['year'] ?></h1>
 <p>
   <a href="index.php">← Back to Diary</a> |
   <a href="edit_entry.php?web_entry_no=<?= $web_entry_no ?>&year=<?= $year ?>" style="color: #007bff;">✏️ Edit This Entry</a>
@@ -88,7 +88,7 @@ foreach ($land_rows as $row) {
     </div>
   <?php endforeach; ?>
 
-  <?php if ($entry['request'] === 'Sarv UP Kisan Credit Card'): ?>
+  <!-- <?php if ($entry['request'] === 'Sarv UP Kisan Credit Card'): ?>
   <div class="documents">
     <h3>Application Documents:</h3>
     <ul>
@@ -120,6 +120,6 @@ foreach ($land_rows as $row) {
 
     </ul>
   </div>
-<?php endif; ?>
+<?php endif; ?> -->
 </body>
 </html>
