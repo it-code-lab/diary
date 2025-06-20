@@ -49,6 +49,92 @@ $village_options = [
 <head>
     <title>Add Entry with Land Details</title>
     <link rel="stylesheet" href="css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 15px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 6px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        form label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 4px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 10px 18px;
+            font-size: 14px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 4px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .land-group,
+        .land-row {
+            border: 1px solid #ddd;
+            padding: 12px;
+            margin: 10px 0;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .cancel-btn {
+            background: #dc3545;
+            margin-left: 10px;
+        }
+
+        .cancel-btn:hover {
+            background: #a71d2a;
+        }
+
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 20px;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+
     <script>
         function updateRemaining() {
             const expense = parseFloat(document.getElementById('expenses').value) || 0;
@@ -100,14 +186,14 @@ $village_options = [
         }
 
         function canRemoveSection(container) {
-        const inputs = container.querySelectorAll('input[type="text"], textarea, select');
-        for (let input of inputs) {
-            if (input.value.trim() !== '') {
-            alert("Please clear all fields before cancelling.");
-            return false;
+            const inputs = container.querySelectorAll('input[type="text"], textarea, select');
+            for (let input of inputs) {
+                if (input.value.trim() !== '') {
+                    alert("Please clear all fields before cancelling.");
+                    return false;
+                }
             }
-        }
-        return true;
+            return true;
         }
 
 
@@ -131,51 +217,53 @@ $village_options = [
 </head>
 
 <body>
-    <p>
-        <a href="index.php">← Back to Diary</a>
-    </p>
-    <h2>Add Web Entry</h2>
-    <form action="save_entry.php" method="post">
-        <label>Web Entry No: <input type="number" name="web_entry_no" value="<?= $next_web_entry ?>"
-                required></label><br>
-        <label>Year: <input type="text" name="year" value="<?= $current_year ?>" required></label><br>
-        <label>Date: <input type="date" name="entry_date" value="<?= $today ?>"></label><br>
-        <label>Name: <input type="text" name="name" required></label><br>
-        <label>Tehsil: <input type="text" name="tehsil"></label><br>
-        <label>Amount: <input type="text" name="amount"></label><br>
-        <label>NEC: <input type="text" name="nec" maxlength="1"></label><br>
-        <label>Affidavit: <input type="text" name="affidavit" maxlength="1"></label><br>
-        <label>Deed: <input type="text" name="deed" maxlength="1"></label><br>
-        <label>B-C: <input type="text" name="b_c"></label><br>
-        <label>Stamp: <input type="text" name="stamp"></label><br>
-        <label>Came Through: <input type="text" name="came_thru"></label><br>
-        <label>Expenses: <input type="text" name="expenses" id="expenses" oninput="updateRemaining()"></label><br>
-        <label>Advance: <input type="text" name="advance" id="advance" oninput="updateRemaining()"></label><br>
-        <label>Remaining: <input type="text" name="remaining" id="remaining" readonly></label><br>
+    <div class="container">
+        <p>
+            <a href="index.php">← Back to Diary</a>
+        </p>
+        <h2>Add Web Entry</h2>
+        <form action="save_entry.php" method="post">
+            <label>Web Entry No: <input type="number" name="web_entry_no" value="<?= $next_web_entry ?>"
+                    required></label><br>
+            <label>Year: <input type="text" name="year" value="<?= $current_year ?>" required></label><br>
+            <label>Date: <input type="date" name="entry_date" value="<?= $today ?>"></label><br>
+            <label>Name: <input type="text" name="name" required></label><br>
+            <label>Tehsil: <input type="text" name="tehsil"></label><br>
+            <label>Amount: <input type="text" name="amount"></label><br>
+            <label>NEC: <input type="text" name="nec" maxlength="1"></label><br>
+            <label>Affidavit: <input type="text" name="affidavit" maxlength="1"></label><br>
+            <label>Deed: <input type="text" name="deed" maxlength="1"></label><br>
+            <label>B-C: <input type="text" name="b_c"></label><br>
+            <label>Stamp: <input type="text" name="stamp"></label><br>
+            <label>Came Through: <input type="text" name="came_thru"></label><br>
+            <label>Expenses: <input type="text" name="expenses" id="expenses" oninput="updateRemaining()"></label><br>
+            <label>Advance: <input type="text" name="advance" id="advance" oninput="updateRemaining()"></label><br>
+            <label>Remaining: <input type="text" name="remaining" id="remaining" readonly></label><br>
 
-        <label>Village:</label>
-        <select name="village">
-            <option value="">--Select--</option>
-            <?php foreach ($village_options as $val): ?>
-                <option value="<?= $val ?>"><?= $val ?></option>
-            <?php endforeach; ?>
-        </select><br>
+            <label>Village:</label>
+            <select name="village">
+                <option value="">--Select--</option>
+                <?php foreach ($village_options as $val): ?>
+                    <option value="<?= $val ?>"><?= $val ?></option>
+                <?php endforeach; ?>
+            </select><br>
 
-        <label>Request:</label>
-        <select name="request">
-            <option value="">--Select--</option>
-            <?php foreach ($request_options as $val): ?>
-                <option value="<?= $val ?>"><?= $val ?></option>
-            <?php endforeach; ?>
-        </select><br>
+            <label>Request:</label>
+            <select name="request">
+                <option value="">--Select--</option>
+                <?php foreach ($request_options as $val): ?>
+                    <option value="<?= $val ?>"><?= $val ?></option>
+                <?php endforeach; ?>
+            </select><br>
 
-        <hr>
-        <h3>Land Details</h3>
-        <div id="village-groups"></div>
-        <button type="button" onclick="addVillageGroup()">+ Add Village / Pargana Group</button><br><br>
+            <hr>
+            <h3>Land Details</h3>
+            <div id="village-groups"></div>
+            <button type="button" onclick="addVillageGroup()">+ Add Village / Pargana Group</button><br><br>
 
-        <button type="submit">Save Entry</button>
-    </form>
+            <button type="submit">Save Entry</button>
+        </form>
+    </div>
 </body>
 
 </html>
