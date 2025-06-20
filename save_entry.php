@@ -27,7 +27,7 @@ try {
     $stmt->execute([$year]);
     $maxWebEntryNo = $stmt->fetchColumn();
     $web_entry_no = $maxWebEntryNo ? $maxWebEntryNo + 1 : 1;
-    error_log("📌 New web_entry_no: $web_entry_no");
+    //error_log("📌 New web_entry_no: $web_entry_no");
 
     // Insert main entry
     $sql = "INSERT INTO diary_entries (
@@ -40,13 +40,13 @@ try {
         $came_thru, $expenses, $advance, $remaining, $village, $request, $year
     ];
 
-    error_log("Diary Entry SQL: " . formatQuery($sql, $params));
+    // error_log("Diary Entry SQL: " . formatQuery($sql, $params));
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute($params);
 
     
-    error_log("✅ Inserted diary entry $web_entry_no");
+    // error_log("✅ Inserted diary entry $web_entry_no");
 
     // Capture all land detail related fields
     $village_names = $_POST['village_name'] ?? [];
@@ -58,9 +58,9 @@ try {
     $village_groups = $_POST['village_group'] ?? [];
 
     // Log data to verify inputs
-    error_log("📦 village_names: " . print_r($village_names, true));
-    error_log("📦 village_groups: " . print_r($village_groups, true));
-    error_log("📦 khata_nos: " . print_r($khata_nos, true));
+    // error_log("📦 village_names: " . print_r($village_names, true));
+    // error_log("📦 village_groups: " . print_r($village_groups, true));
+    // error_log("📦 khata_nos: " . print_r($khata_nos, true));
 
     // Step 1: Map group_id to list of khata/khasra indexes
     $group_to_indexes = [];
@@ -75,7 +75,7 @@ try {
         $group_id = array_keys($group_to_indexes)[$i] ?? null;
 
         if (!$group_id) {
-            error_log("⚠️ Missing group ID for village $village_name");
+            // error_log("⚠️ Missing group ID for village $village_name");
             $i++;
             continue;
         }
@@ -96,12 +96,12 @@ try {
                 $shares[$j]
             ];
 
-            error_log("Land SQL: " . formatQuery($landSql, $landParams));
+            // error_log("Land SQL: " . formatQuery($landSql, $landParams));
 
             $stmt = $pdo->prepare($landSql);
             $stmt->execute($landParams);
 
-            error_log("✅ Inserted land details for $village_name/$pargana - khata: {$khata_nos[$j]}");
+            // error_log("✅ Inserted land details for $village_name/$pargana - khata: {$khata_nos[$j]}");
         }
 
         $i++;
@@ -112,7 +112,7 @@ try {
     exit;
 } catch (Exception $e) {
     $pdo->rollBack();
-    error_log("❌ Error saving entry: " . $e->getMessage());
+    // error_log("❌ Error saving entry: " . $e->getMessage());
     echo "Error: " . $e->getMessage();
 }
 

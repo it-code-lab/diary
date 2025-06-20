@@ -1,1 +1,4 @@
 templates/
+get_pending_entries.php
+update_serial_numbers.php
+constants.php

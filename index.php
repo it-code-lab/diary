@@ -18,6 +18,7 @@ $entries = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/diary/images/icon.png">
     <title>Diary Entries</title>
     <style>
         body {
@@ -169,6 +170,7 @@ $entries = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <th>Village</th>
                         <th>Request</th>
                         <th>Action</th>
+                        <th>Excel Serial No</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -188,6 +190,8 @@ $entries = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         class="btn-link">Edit</a>
                                 </div>
                             </td>
+                            <td data-label="Excel Serial"><?= htmlspecialchars($row['serial_no'] ?? '') ?></td>
+
 
 
                         </tr>

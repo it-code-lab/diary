@@ -39,6 +39,7 @@ foreach ($land_rows as $row) {
 <head>
   <title>Application Document</title>
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/png" href="/diary/images/icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
