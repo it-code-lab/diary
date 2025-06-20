@@ -236,7 +236,10 @@ $village_options = [
                     required></label><br>
             <label>Year: <input type="text" name="year" value="<?= $current_year ?>" required></label><br>
             <label>Date: <input type="date" name="entry_date" value="<?= $today ?>"></label><br>
-            <label>Name: <input type="text" name="name" required></label><br>
+            <!-- <label>Name: <input type="text" name="name" required></label><br> -->
+            <label>Name:<br>
+            <textarea name="name" rows="4" cols="50" required></textarea>
+            </label><br>
             <label>Tehsil: <input type="text" name="tehsil"></label><br>
             <label>Amount: <input type="text" name="amount"></label><br>
             <label>NEC: <input type="text" name="nec" maxlength="1"></label><br>

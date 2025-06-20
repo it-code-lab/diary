@@ -229,7 +229,10 @@ $village_options = [
       <input type="hidden" name="web_entry_no" value="<?= $web_entry_no ?>">
       <label>Year: <input type="text" name="year" value="<?= $entry['year'] ?>" required></label><br>
       <label>Date: <input type="date" name="entry_date" value="<?= $entry['entry_date'] ?>"></label><br>
-      <label>Name: <input type="text" name="name" value="<?= $entry['name'] ?>"></label><br>
+      <label>Name:<br>
+        <textarea name="name" rows="4" cols="50"><?= htmlspecialchars($entry['name']) ?></textarea>
+      </label><br>
+
       <label>Tehsil: <input type="text" name="tehsil" value="<?= $entry['tehsil'] ?>"></label><br>
       <label>Amount: <input type="text" name="amount" value="<?= $entry['amount'] ?>"></label><br>
       <label>NEC: <input type="text" name="nec" value="<?= $entry['nec'] ?>" maxlength="1"></label><br>
